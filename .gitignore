@@ -1,0 +1,7 @@
+# -- bad-elf------
+
+bad-elf/bin/*
+
+bad-elf-android/bin/*
+
+bad-elf-desktop/bin/*
