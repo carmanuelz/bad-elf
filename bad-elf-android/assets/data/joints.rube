@@ -1,0 +1,760 @@
+
+{
+  "activeScript" : "joint[] js = sj();\nfor (uint i = 0; i < js.length; i++)\n{\n\tjs[i].setLength( js[i].getWorldAnchorA().distanceTo( js[i].getWorldAnchorB() ) );\n}",
+  "collisionbitplanes" : 
+  {
+    "names" : 
+    [
+      "bitplane1",
+      "bitplane2",
+      "bitplane3",
+      "bitplane4",
+      "bitplane5",
+      "bitplane6",
+      "bitplane7",
+      "bitplane8",
+      "bitplane9",
+      "bitplane10",
+      "bitplane11",
+      "bitplane12",
+      "bitplane13",
+      "bitplane14",
+      "bitplane15",
+      "bitplane16",
+      "bitplane17",
+      "bitplane18",
+      "bitplane19",
+      "bitplane20",
+      "bitplane21",
+      "bitplane22",
+      "bitplane23",
+      "bitplane24",
+      "bitplane25",
+      "bitplane26",
+      "bitplane27",
+      "bitplane28",
+      "bitplane29",
+      "bitplane30",
+      "bitplane31",
+      "bitplane32"
+    ]
+  },
+  "customPropertyDefs" : 
+  [
+    
+    {
+      "class" : "fixture",
+      "displayName" : "TextureMask",
+      "name" : "TextureMask",
+      "type" : "string"
+    }
+  ],
+  "metaworld" : 
+  {
+    "allowSleep" : true,
+    "autoClearForces" : true,
+    "continuousPhysics" : true,
+    "exportOptions" : 
+    {
+      "saveFullPathForImages" : false,
+      "useHumanReadableFloats" : true
+    },
+    "gravity" : 
+    {
+      "x" : 0,
+      "y" : -10.0
+    },
+    "metabody" : 
+    [
+      
+      {
+        "angle" : 0,
+        "angularVelocity" : 0,
+        "awake" : true,
+        "fixture" : 
+        [
+          
+          {
+            "density" : 1,
+            "friction" : 0.2,
+            "id" : 4,
+            "name" : "fixture2",
+            "shapes" : 
+            [
+              
+              {
+                "type" : "polygon"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : 
+              [
+                -8.124996185302734,
+                8.124988555908203,
+                8.124988555908203,
+                -8.124996185302734
+              ],
+              "y" : [ -0.50, -0.50, 0.50, 0.50 ]
+            }
+          }
+        ],
+        "id" : 4,
+        "linearVelocity" : 0,
+        "massData-I" : 358.9378356933594,
+        "massData-center" : 
+        {
+          "x" : -3.814697038251325e-006,
+          "y" : 0
+        },
+        "massData-mass" : 16.24998474121094,
+        "name" : "body2",
+        "position" : 
+        {
+          "x" : 79.87409973144531,
+          "y" : 77.45732879638672
+        },
+        "type" : "dynamic"
+      },
+      
+      {
+        "angle" : 0,
+        "angularVelocity" : 1.570796370506287,
+        "awake" : true,
+        "fixture" : 
+        [
+          
+          {
+            "density" : 1,
+            "friction" : 0.2,
+            "id" : 10,
+            "name" : "fixture1",
+            "shapes" : 
+            [
+              
+              {
+                "radius" : 4.0,
+                "type" : "circle"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : [ 0.0 ],
+              "y" : [ 0.0 ]
+            }
+          }
+        ],
+        "id" : 7,
+        "linearVelocity" : 0,
+        "name" : "body1",
+        "position" : 
+        {
+          "x" : 41.0,
+          "y" : 30.0
+        },
+        "type" : "kinematic"
+      },
+      
+      {
+        "angle" : -1.570796370506287,
+        "angularVelocity" : 0,
+        "awake" : true,
+        "fixture" : 
+        [
+          
+          {
+            "density" : 1,
+            "friction" : 0.2,
+            "id" : 7,
+            "name" : "fixture2",
+            "shapes" : 
+            [
+              
+              {
+                "type" : "polygon"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : 
+              [
+                -8.124996185302734,
+                8.124988555908203,
+                8.124988555908203,
+                -8.124996185302734
+              ],
+              "y" : [ -0.50, -0.50, 0.50, 0.50 ]
+            }
+          }
+        ],
+        "id" : 6,
+        "linearVelocity" : 0,
+        "massData-I" : 358.9378356933594,
+        "massData-center" : 
+        {
+          "x" : -3.814697038251325e-006,
+          "y" : 0
+        },
+        "massData-mass" : 16.24998474121094,
+        "name" : "body2",
+        "position" : 
+        {
+          "x" : 21.0,
+          "y" : 30.0
+        },
+        "type" : "dynamic"
+      },
+      
+      {
+        "angle" : 0.7853981852531433,
+        "angularVelocity" : 0,
+        "awake" : true,
+        "fixture" : 
+        [
+          
+          {
+            "density" : 1,
+            "friction" : 0.2,
+            "id" : 12,
+            "name" : "fixture2",
+            "shapes" : 
+            [
+              
+              {
+                "type" : "polygon"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : 
+              [
+                -8.124996185302734,
+                8.124988555908203,
+                8.124988555908203,
+                -8.124996185302734
+              ],
+              "y" : [ -0.50, -0.50, 0.50, 0.50 ]
+            }
+          }
+        ],
+        "id" : 9,
+        "linearVelocity" : 0,
+        "massData-I" : 358.9378356933594,
+        "massData-center" : 
+        {
+          "x" : -3.814697038251325e-006,
+          "y" : 0
+        },
+        "massData-mass" : 16.24998474121094,
+        "name" : "body2",
+        "position" : 
+        {
+          "x" : 70.0,
+          "y" : 40.0
+        },
+        "type" : "dynamic"
+      },
+      
+      {
+        "angle" : 0,
+        "angularVelocity" : 1.570796370506287,
+        "awake" : true,
+        "fixture" : 
+        [
+          
+          {
+            "density" : 1,
+            "friction" : 0.2,
+            "id" : 11,
+            "name" : "fixture1",
+            "shapes" : 
+            [
+              
+              {
+                "radius" : 4.0,
+                "type" : "circle"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : [ 0.0 ],
+              "y" : [ 0.0 ]
+            }
+          }
+        ],
+        "id" : 8,
+        "linearVelocity" : 0,
+        "name" : "body1",
+        "position" : 
+        {
+          "x" : 80.0,
+          "y" : 30.0
+        },
+        "type" : "kinematic"
+      },
+      
+      {
+        "angle" : 0,
+        "angularVelocity" : 0,
+        "awake" : true,
+        "fixture" : 
+        [
+          
+          {
+            "density" : 1,
+            "friction" : 0.2,
+            "id" : 3,
+            "name" : "fixture2",
+            "shapes" : 
+            [
+              
+              {
+                "type" : "polygon"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : 
+              [
+                -8.124996185302734,
+                8.124988555908203,
+                8.124988555908203,
+                -8.124996185302734
+              ],
+              "y" : [ -0.50, -0.50, 0.50, 0.50 ]
+            }
+          }
+        ],
+        "id" : 3,
+        "linearVelocity" : 0,
+        "massData-I" : 358.9378356933594,
+        "massData-center" : 
+        {
+          "x" : -3.814697038251325e-006,
+          "y" : 0
+        },
+        "massData-mass" : 16.24998474121094,
+        "name" : "body2",
+        "position" : 
+        {
+          "x" : 41.49531173706055,
+          "y" : 77.45732879638672
+        },
+        "type" : "dynamic"
+      },
+      
+      {
+        "angle" : 0,
+        "angularVelocity" : 3.141592741012573,
+        "awake" : true,
+        "fixture" : 
+        [
+          
+          {
+            "density" : 1,
+            "friction" : 0.2,
+            "id" : 1,
+            "name" : "fixture1",
+            "shapes" : 
+            [
+              
+              {
+                "radius" : 4.0,
+                "type" : "circle"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : [ 0.0 ],
+              "y" : [ 0.0 ]
+            }
+          }
+        ],
+        "id" : 1,
+        "linearVelocity" : 0,
+        "name" : "body1",
+        "position" : 
+        {
+          "x" : 50.03094482421875,
+          "y" : 60.15286254882813
+        },
+        "type" : "kinematic"
+      },
+      
+      {
+        "angle" : 0,
+        "angularVelocity" : 0,
+        "awake" : true,
+        "fixture" : 
+        [
+          
+          {
+            "customProperties" : 
+            [
+              
+              {
+                "name" : "TextureMask",
+                "string" : "images/brick.png"
+              }
+            ],
+            "density" : 1,
+            "friction" : 0.2,
+            "id" : 5,
+            "name" : "fixture0",
+            "shapes" : 
+            [
+              
+              {
+                "type" : "polygon"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : [ 99.50, 100.50, 100.50, 99.50 ],
+              "y" : [ -50.0, -50.0, 50.0, 50.0 ]
+            }
+          },
+          
+          {
+            "customProperties" : 
+            [
+              
+              {
+                "name" : "TextureMask",
+                "string" : "images/brick.png"
+              }
+            ],
+            "density" : 1,
+            "friction" : 0.2,
+            "id" : 9,
+            "name" : "fixture0",
+            "shapes" : 
+            [
+              
+              {
+                "type" : "polygon"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : [ 100.0, 100.0, 1.607272110959457e-006, 1.650983563195041e-006 ],
+              "y" : 
+              [
+                49.50000381469727,
+                50.50000381469727,
+                50.49999618530273,
+                49.49999618530273
+              ]
+            }
+          },
+          
+          {
+            "customProperties" : 
+            [
+              
+              {
+                "name" : "TextureMask",
+                "string" : "images/brick.png"
+              }
+            ],
+            "density" : 1,
+            "friction" : 0.2,
+            "id" : 8,
+            "name" : "fixture0",
+            "shapes" : 
+            [
+              
+              {
+                "type" : "polygon"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : [ 100.0, 100.0, 1.607272110959457e-006, 1.650983563195041e-006 ],
+              "y" : 
+              [
+                -50.49999618530273,
+                -49.49999618530273,
+                -49.50000381469727,
+                -50.50000381469727
+              ]
+            }
+          },
+          
+          {
+            "customProperties" : 
+            [
+              
+              {
+                "name" : "TextureMask",
+                "string" : "images/brick.png"
+              }
+            ],
+            "density" : 1,
+            "friction" : 0.2,
+            "id" : 2,
+            "name" : "fixture0",
+            "shapes" : 
+            [
+              
+              {
+                "type" : "polygon"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : [ -0.50, 0.50, 0.50, -0.50 ],
+              "y" : [ -50.0, -50.0, 50.0, 50.0 ]
+            }
+          }
+        ],
+        "id" : 2,
+        "linearVelocity" : 0,
+        "name" : "body0",
+        "position" : 
+        {
+          "x" : 0,
+          "y" : 50.0
+        },
+        "type" : "static"
+      },
+      
+      {
+        "angle" : 0,
+        "angularVelocity" : 1.570796370506287,
+        "awake" : true,
+        "fixture" : 
+        [
+          
+          {
+            "density" : 1,
+            "friction" : 0.2,
+            "id" : 6,
+            "name" : "fixture1",
+            "shapes" : 
+            [
+              
+              {
+                "radius" : 4.0,
+                "type" : "circle"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : [ 0.0 ],
+              "y" : [ 0.0 ]
+            }
+          }
+        ],
+        "id" : 5,
+        "linearVelocity" : 0,
+        "name" : "body1",
+        "position" : 
+        {
+          "x" : 80.03094482421875,
+          "y" : 60.15286254882813
+        },
+        "type" : "kinematic"
+      }
+    ],
+    "metajoint" : 
+    [
+      
+      {
+        "anchorA" : 
+        {
+          "x" : 0,
+          "y" : 6.0
+        },
+        "anchorB" : 0,
+        "bodyA" : 7,
+        "bodyB" : 6,
+        "collideConnected" : false,
+        "dampingRatio" : 0,
+        "frequency" : 0,
+        "id" : 20,
+        "length" : 20.88061332702637,
+        "name" : "joint5",
+        "type" : "distance"
+      },
+      
+      {
+        "anchorA" : 
+        {
+          "x" : -4.008728027343750,
+          "y" : 0
+        },
+        "anchorB" : 
+        {
+          "x" : 8.535630226135254,
+          "y" : 0.01164249982684851
+        },
+        "bodyA" : 1,
+        "bodyB" : 3,
+        "collideConnected" : false,
+        "dampingRatio" : 0,
+        "frequency" : 0,
+        "id" : 2,
+        "length" : 17.77406883239746,
+        "name" : "joint1",
+        "type" : "distance"
+      },
+      
+      {
+        "anchorA" : 
+        {
+          "x" : 60.00001144409180,
+          "y" : -20.00000572204590
+        },
+        "anchorB" : 
+        {
+          "x" : -14.14210033416748,
+          "y" : 0
+        },
+        "bodyA" : 2,
+        "bodyB" : 9,
+        "collideConnected" : false,
+        "enableLimit" : false,
+        "enableMotor" : false,
+        "id" : 23,
+        "localAxisA" : 
+        {
+          "x" : -0.7071067690849304,
+          "y" : 0.7071067690849304
+        },
+        "lowerLimit" : 0,
+        "maxMotorForce" : 0,
+        "motorSpeed" : 0,
+        "name" : "joint6",
+        "referenceAngle" : 0.7853981852531433,
+        "type" : "prismatic",
+        "upperLimit" : 0
+      },
+      
+      {
+        "anchorA" : 
+        {
+          "x" : -3.162185668945313,
+          "y" : -3.338523864746094
+        },
+        "anchorB" : 0,
+        "bodyA" : 8,
+        "bodyB" : 9,
+        "collideConnected" : false,
+        "dampingRatio" : 0,
+        "frequency" : 0,
+        "id" : 24,
+        "length" : 14.98906040191650,
+        "name" : "joint7",
+        "type" : "distance"
+      },
+      
+      {
+        "anchorA" : 
+        {
+          "x" : -8.063102722167969,
+          "y" : 0
+        },
+        "anchorB" : 
+        {
+          "x" : 71.87409973144531,
+          "y" : 27.45730018615723
+        },
+        "bodyA" : 4,
+        "bodyB" : 2,
+        "collideConnected" : false,
+        "enableLimit" : false,
+        "enableMotor" : false,
+        "id" : 10,
+        "localAxisA" : 
+        {
+          "x" : 0,
+          "y" : 1
+        },
+        "lowerLimit" : 0,
+        "maxMotorForce" : 0,
+        "motorSpeed" : 0,
+        "name" : "joint2",
+        "referenceAngle" : 0,
+        "type" : "prismatic",
+        "upperLimit" : 0
+      },
+      
+      {
+        "anchorA" : 
+        {
+          "x" : -4.072639465332031,
+          "y" : -0.07741165161132813
+        },
+        "anchorB" : 0,
+        "bodyA" : 5,
+        "bodyB" : 4,
+        "collideConnected" : false,
+        "dampingRatio" : 0,
+        "frequency" : 0,
+        "id" : 12,
+        "length" : 17.81749534606934,
+        "name" : "joint3",
+        "type" : "distance"
+      },
+      
+      {
+        "anchorA" : 
+        {
+          "x" : 21.0,
+          "y" : -12.17290019989014
+        },
+        "anchorB" : 
+        {
+          "x" : -7.827119827270508,
+          "y" : -3.421340011300345e-007
+        },
+        "bodyA" : 2,
+        "bodyB" : 6,
+        "collideConnected" : false,
+        "enableLimit" : false,
+        "enableMotor" : false,
+        "id" : 19,
+        "localAxisA" : 
+        {
+          "x" : 1,
+          "y" : 0
+        },
+        "lowerLimit" : 0,
+        "maxMotorForce" : 0,
+        "motorSpeed" : 0,
+        "name" : "joint4",
+        "referenceAngle" : -1.570796370506287,
+        "type" : "prismatic",
+        "upperLimit" : 0
+      },
+      
+      {
+        "anchorA" : 0,
+        "anchorB" : 
+        {
+          "x" : 41.49530029296875,
+          "y" : 27.45730018615723
+        },
+        "bodyA" : 3,
+        "bodyB" : 2,
+        "collideConnected" : false,
+        "enableLimit" : false,
+        "enableMotor" : false,
+        "id" : 1,
+        "lowerLimit" : 0,
+        "maxMotorTorque" : 0,
+        "motorSpeed" : 0,
+        "name" : "joint0",
+        "referenceAngle" : 0,
+        "type" : "revolute",
+        "upperLimit" : 0
+      }
+    ],
+    "positionIterations" : 3,
+    "stepsPerSecond" : 60.0,
+    "subStepping" : false,
+    "velocityIterations" : 8,
+    "warmStarting" : true
+  }
+}

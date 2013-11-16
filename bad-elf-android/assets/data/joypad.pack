@@ -1,0 +1,47 @@
+
+joypad.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+contorno1280
+  rotate: false
+  xy: 2, 88
+  size: 160, 160
+  orig: 160, 160
+  offset: 0, 0
+  index: -1
+contorno1024
+  rotate: false
+  xy: 164, 119
+  size: 129, 129
+  orig: 129, 129
+  offset: 0, 0
+  index: -1
+contorno800
+  rotate: false
+  xy: 295, 147
+  size: 101, 101
+  orig: 101, 101
+  offset: 0, 0
+  index: -1
+boton1280
+  rotate: false
+  xy: 2, 2
+  size: 84, 84
+  orig: 84, 84
+  offset: 0, 0
+  index: -1
+boton1024
+  rotate: false
+  xy: 398, 181
+  size: 67, 67
+  orig: 67, 67
+  offset: 0, 0
+  index: -1
+boton800
+  rotate: false
+  xy: 88, 33
+  size: 53, 53
+  orig: 53, 53
+  offset: 0, 0
+  index: -1

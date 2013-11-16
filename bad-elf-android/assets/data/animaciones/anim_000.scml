@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
+    <folder id="0">
+        <file id="0" name="canon.png" width="74" height="281" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="expl.png" width="128" height="128" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="rueda1.png" width="169" height="169" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="rueda2.png" width="112" height="112" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="rueda3.png" width="80" height="78" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="entity_000">
+        <animation id="0" name="base" length="1000">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="rueda1" folder="0" file="2" abs_x="-53.966689" abs_y="-2.223724" abs_pivot_x="0.498435" abs_pivot_y="0.501502" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" name="rueda2" folder="0" file="3" abs_x="18.235089" abs_y="-35.215095" abs_pivot_x="0.503905" abs_pivot_y="0.49497" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" name="rueda3" folder="0" file="4" abs_x="48.476132" abs_y="46.255451" abs_pivot_x="0.500323" abs_pivot_y="0.504937" abs_angle="359" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="2" key="0" z_index="2"/>
+                </key>
+                <key id="1" time="499">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
+                </key>
+                <key id="2" time="500">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="1" z_index="2"/>
+                </key>
+                <key id="3" time="999">
+                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="2" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="2" z_index="2"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="rueda1">
+                <key id="0">
+                    <object folder="0" file="2" x="-53.966689" y="-2.223724" pivot_x="0.498435" pivot_y="0.501502" angle="0"/>
+                </key>
+                <key id="1" time="499">
+                    <object folder="0" file="2" x="-53.966689" y="-2.223724" pivot_x="0.498435" pivot_y="0.501502" angle="90"/>
+                </key>
+                <key id="2" time="999" spin="-1">
+                    <object folder="0" file="2" x="-53.966689" y="-2.223724" pivot_x="0.498435" pivot_y="0.501502" angle="180"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="rueda2">
+                <key id="0">
+                    <object folder="0" file="3" x="18.235089" y="-35.215095" pivot_x="0.503905" pivot_y="0.49497" angle="0"/>
+                </key>
+                <key id="1" time="499">
+                    <object folder="0" file="3" x="18.235089" y="-35.215095" pivot_x="0.503905" pivot_y="0.49497" angle="135"/>
+                </key>
+                <key id="2" time="999">
+                    <object folder="0" file="3" x="18.235089" y="-35.215095" pivot_x="0.503905" pivot_y="0.49497" angle="279"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="rueda3">
+                <key id="0" spin="-1">
+                    <object folder="0" file="4" x="48.476132" y="46.255451" pivot_x="0.500323" pivot_y="0.504937" angle="359"/>
+                </key>
+                <key id="1" time="500" spin="-1">
+                    <object folder="0" file="4" x="48.476132" y="46.255451" pivot_x="0.500323" pivot_y="0.504937" angle="180"/>
+                </key>
+                <key id="2" time="999" spin="-1">
+                    <object folder="0" file="4" x="48.476132" y="46.255451" pivot_x="0.500323" pivot_y="0.504937" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+    <entity id="1" name="entity_001">
+        <animation id="0" name="canon" length="500">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="canon" folder="0" file="0" abs_x="-36" abs_y="250.722278" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" name="expl" folder="0" file="1" abs_x="-71.460109" abs_y="323.097672" abs_pivot_x="0" abs_pivot_y="1" abs_angle="0" abs_scale_x="1.148948" abs_scale_y="1.117344" abs_a="0" timeline="1" key="0" z_index="1"/>
+                </key>
+                <key id="1" time="38">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="canon">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-36" y="250.722278" angle="0"/>
+                </key>
+                <key id="1" time="38" spin="0">
+                    <object folder="0" file="0" x="-36" y="216.176823" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="expl">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-71.460109" y="323.097672" angle="0" scale_x="1.148948" scale_y="1.117344" a="0"/>
+                </key>
+                <key id="1" time="38" spin="0">
+                    <object folder="0" file="1" x="-71.460109" y="288.552217" angle="0" scale_x="1.148948" scale_y="1.117344"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

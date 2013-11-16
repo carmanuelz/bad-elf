@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="b5">
+    <folder id="0">
+        <file id="0" name="base_cañon.png" width="295" height="110" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="canon.png" width="70" height="141" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="entity_000">
+        <animation id="0" name="NewAnimation" length="300" looping="false">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" name="base_cañon" folder="0" file="0" abs_x="-147.368421" abs_y="40.350877" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" name="canon" folder="0" file="1" abs_x="-31.578947" abs_y="175.438596" abs_pivot_x="0" abs_pivot_y="1" abs_angle="360" abs_scale_x="1" abs_scale_y="1" abs_a="1" timeline="1" key="0" z_index="1"/>
+                </key>
+                <key id="1" time="29">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="base_cañon">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-147.368421" y="40.350877"/>
+                </key>
+                <key id="1" time="29" spin="0">
+                    <object folder="0" file="0" x="-147.368421" y="40.350877"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="canon">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-31.578947" y="175.438596"/>
+                </key>
+                <key id="1" time="29" spin="0">
+                    <object folder="0" file="1" x="-35.027223" y="106.473079"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>
