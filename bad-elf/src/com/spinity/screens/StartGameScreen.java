@@ -1,5 +1,6 @@
 package com.spinity.screens;
 
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -60,12 +61,14 @@ import com.brashmonkey.spriter.objects.SpriterIKObject;
 import com.brashmonkey.spriter.objects.SpriterObject;
 import com.brashmonkey.spriter.player.SpriterAbstractPlayer;
 import com.brashmonkey.spriter.player.SpriterPlayer;
+import com.brashmonkey.spriter.xml.FileHandleSCMLReader;
 import com.discobeard.spriter.dom.TimeLine;
-import com.me.gdxspriter.SpriterDrawer;
-import com.me.gdxspriter.SpriterLoader;
-import com.me.mygdxgame.Bala;
-import com.me.mygdxgame.Paracaidista;
-import com.me.mygdxgame.SpriteAccessor;
+import com.spinity.gdxspriter.SpriteDrawer;
+import com.spinity.gdxspriter.SpriteLoader;
+import com.spinity.gdxspriter.SpriteLoaderMultithreaded;
+import com.spinity.mygdxgame.Bala;
+import com.spinity.mygdxgame.Paracaidista;
+import com.spinity.mygdxgame.SpriteAccessor;
 import com.spinity.utils.BitmapAccessor;
 import com.spinity.utils.BodyAccessor;
 
@@ -106,6 +109,7 @@ public class StartGameScreen extends AbstractScreen implements ContactListener {
 	private final TweenManager tweenManager = new TweenManager(); // actualiza las animaciones y las lineas de tiempo.
 	private Vector2 destino;			// encapsula un vector 2D
 	private Vector2 origen;
+	private Sprite BalaSprite;
 	
 	private ArrayList<Paracaidista> paracaidistas = new ArrayList<Paracaidista>();
 	private ArrayList<Bala> balas = new ArrayList<Bala>();
@@ -118,20 +122,20 @@ public class StartGameScreen extends AbstractScreen implements ContactListener {
 	float h;
 	private Spriter spriter;
 	private SpriterPlayer sp;
-	SpriterLoader loader;
+	SpriteLoader loader;
 	private SpriterPlayer playerSpriter;
-	SpriterDrawer drawer;
+	SpriteDrawer drawer;
 	SpriterIKObject obj;
 	SpriterIKResolver resolver;
 	SpriterBone canonBone;
 	
 	Spriter manibela;
 	private SpriterPlayer maniSpriter;
-	SpriterDrawer maniDrawer;
+	SpriteDrawer maniDrawer;
 	
 	Spriter bala;
 	SpriterPlayer balaSpriter;
-	SpriterDrawer balaDrawer;
+	SpriteDrawer balaDrawer;
 	Sprite bg;
 	
 	ImageButton btn;
@@ -190,6 +194,8 @@ public class StartGameScreen extends AbstractScreen implements ContactListener {
 	    
 	    TextureRegion textureBtnDown = new TextureRegion(new Texture(Gdx.files.internal("data/animaciones/button_down.png")),0,0,64,64);
 		TextureRegion textureBtnUp = new TextureRegion(new Texture(Gdx.files.internal("data/animaciones/button_up.png")),0,0,64,64);
+		BalaSprite = new Sprite(new Texture(Gdx.files.internal("data/animaciones/bala.png")));
+		BalaSprite.setSize(0.5f,0.5f);
 		ImageButtonStyle styleBtn = new ImageButtonStyle();
 		styleBtn.up = new TextureRegionDrawable(textureBtnUp);
 		styleBtn.down = new TextureRegionDrawable(textureBtnDown);
@@ -218,10 +224,11 @@ public class StartGameScreen extends AbstractScreen implements ContactListener {
 	    bg = new Sprite(bgTexture);
 	    bg.setSize(10, 10*h/w);
 	    bg.setPosition(-5, -5*h/w);
-	    
-	    loader = new SpriterLoader(true);
-	    drawer = new SpriterDrawer(loader,batch);
-	    spriter =  Spriter.getSpriter("data/animaciones/anim_000.scml", loader);
+	    this.loader = new SpriteLoader(2048, 2048);
+        this.drawer = new SpriteDrawer(this.loader, this.batch);
+	    loader = new SpriteLoader(2048, 2048);
+	    drawer = new SpriteDrawer(this.loader, this.batch);
+	    spriter =   FileHandleSCMLReader.getSpriter(Gdx.files.internal("data/animaciones/anim_000.scml"), loader);
 	    playerSpriter = new SpriterPlayer(spriter, 1, loader);
 	    playerSpriter.setAnimationIndex(0);
 	    playerSpriter.setFrameSpeed(0);
@@ -238,17 +245,6 @@ public class StartGameScreen extends AbstractScreen implements ContactListener {
 	    bf = new BitmapFont();
 	    bitmap = new SpriteBatch();
 	    score = 0;
-	    
-	    SpriterLoader balaLoad = new SpriterLoader(true);
-		balaDrawer = new SpriterDrawer(balaLoad,batch);
-		
-		bala = Spriter.getSpriter("data/animaciones/bala_spriter.scml", balaLoad);
-		balaSpriter = new SpriterPlayer(bala, 0, balaLoad);
-		balaSpriter.setScale(0.02f);
-		balaSpriter.setFrameSpeed(10);
-		balaSpriter.setFrame(500);
-		
-		balaSpriter.update(0, -5);
 		
 	}
 
@@ -278,7 +274,6 @@ public class StartGameScreen extends AbstractScreen implements ContactListener {
 		bg.draw(batch);
 		playerSpriter.update(0, -4.8f);
 		maniSpriter.update(-0.8f, -5.5f);
-		balaSpriter.update(0, -5);
 		if(!shot_ready){
 			if(playerSpriter.getFrame() < 480){ //479
 			}else{
@@ -286,7 +281,6 @@ public class StartGameScreen extends AbstractScreen implements ContactListener {
 				playerSpriter.setFrame(500);
 			}
 		}
-		balaDrawer.draw(balaSpriter);
 		drawer.draw(playerSpriter);
 		base.draw(batch);
 		drawer.draw(maniSpriter);
@@ -296,7 +290,7 @@ public class StartGameScreen extends AbstractScreen implements ContactListener {
 		}
 		for(int k=0; k < balas.size();k++){
 			if(!balas.get(k).exploto){
-				balas.get(k).Draw((SpriterPlayer) balaSpriter,balaDrawer);
+				balas.get(k).Draw(BalaSprite, batch);
 			}else{
 				balas.get(k).tween.kill();
 				listaRemoveBody.add(balas.get(k).bBody);
@@ -419,7 +413,6 @@ public class StartGameScreen extends AbstractScreen implements ContactListener {
 		Bala bala = new Bala(world);
 	    bala.bBody.setTransform(origen.x, origen.y,0);
 		balas.add(bala);
-		balaSpriter.update(origen.x,origen.y);
 		
 		bala.tween = Tween.to(bala.bBody, BodyAccessor.POS_XY, 1f) // indica a la bala en que posicion acaba su recorrido (bala.bSprite, SpriteAccessor.POS_XY, 1f)
 		.ease(Linear.INOUT)

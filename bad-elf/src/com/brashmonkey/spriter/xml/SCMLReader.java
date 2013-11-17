@@ -33,7 +33,7 @@ import com.discobeard.spriter.dom.*;
  */
 public class SCMLReader {
 	
-	private static SpriterData data;
+	protected static SpriterData data;
 	
 	/**
 	 * Loads a whole spriter file.
@@ -65,15 +65,14 @@ public class SCMLReader {
 		try {
 			XmlReader.Element root = reader.parse(stream);
 			loadFolders(root.getChildrenByName("folder"));
-			loadEntities(root.getChildrenByName("entity"));
-			
+			loadEntities(root.getChildrenByName("entity"));			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		return data;
 	}
 	
-	private static void loadFolders(ArrayList<XmlReader.Element> folders){
+	protected static void loadFolders(ArrayList<XmlReader.Element> folders){
 		for(int i = 0; i < folders.size(); i++){
 			XmlReader.Element repo = folders.get(i);
 			Folder folder = new Folder();
@@ -98,7 +97,7 @@ public class SCMLReader {
 		}
 	}
 
-	private static void loadEntities(ArrayList<XmlReader.Element> entities){
+	protected static void loadEntities(ArrayList<XmlReader.Element> entities){
 		for(int i = 0; i < entities.size(); i++){
 			XmlReader.Element e = entities.get(i);
 			Entity entity = new Entity();
@@ -205,7 +204,6 @@ public class SCMLReader {
 				File f = data.getFolder().get(object.getFolder()).getFile().get(object.getFile());
 				object.setPivotX(new BigDecimal(obj.getFloat("pivot_x", f.getPivotX())));
 				object.setPivotY(new BigDecimal(obj.getFloat("pivot_y", f.getPivotY())));
-				object.setA(new BigDecimal(obj.getFloat("a", 1))); // Modificacion de Alpha
 				key.getObject().add(object);
 			}
 			timeline.getKey().add(key);

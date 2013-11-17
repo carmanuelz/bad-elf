@@ -18,10 +18,9 @@
 package com.brashmonkey.spriter;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
 
-import com.badlogic.gdx.Gdx;
 import com.brashmonkey.spriter.file.FileLoader;
 import com.brashmonkey.spriter.file.Reference;
 import com.brashmonkey.spriter.xml.SCMLReader;
@@ -58,16 +57,14 @@ public class Spriter {
 	
 	public Spriter(File scmlfile, FileLoader<?> loader) throws FileNotFoundException {
 		this.scmlFile = scmlfile;
-		InputStream file = Gdx.files.internal("data/monster/basic.scml").read();
-		this.spriterData = SCMLReader.load(file);
+		this.spriterData = SCMLReader.load(new FileInputStream(scmlFile));
 		this.loader = loader;
 		loadResources();
 	}
 
 	public Spriter(String scmlPath, FileLoader<?> loader) {
-		this.scmlFile = Gdx.files.internal(scmlPath).file();
-		InputStream file = Gdx.files.internal(scmlPath).read();
-		this.spriterData = SCMLReader.load(file);
+		this.scmlFile = new File(scmlPath);
+		this.spriterData = SCMLReader.load(scmlPath);
 		this.loader = loader;
 		loadResources();
 	}

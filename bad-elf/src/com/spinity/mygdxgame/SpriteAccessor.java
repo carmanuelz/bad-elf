@@ -1,4 +1,4 @@
-package com.me.mygdxgame;
+package com.spinity.mygdxgame;
 
 import aurelienribon.tweenengine.TweenAccessor;
 import com.badlogic.gdx.graphics.Color;

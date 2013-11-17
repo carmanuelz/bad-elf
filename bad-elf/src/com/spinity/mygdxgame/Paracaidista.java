@@ -1,4 +1,4 @@
-package com.me.mygdxgame;
+package com.spinity.mygdxgame;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;

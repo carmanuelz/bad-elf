@@ -1,10 +1,6 @@
-package com.me.mygdxgame;
+package com.spinity.mygdxgame;
 
-import aurelienribon.tweenengine.BaseTween;
 import aurelienribon.tweenengine.Tween;
-import aurelienribon.tweenengine.TweenCallback;
-import aurelienribon.tweenengine.TweenManager;
-import aurelienribon.tweenengine.equations.Linear;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -17,9 +13,6 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
-import com.brashmonkey.spriter.player.SpriterAbstractPlayer;
-import com.brashmonkey.spriter.player.SpriterPlayer;
-import com.me.gdxspriter.SpriterDrawer;
 
 public class Bala {
 	public String tipo = "b";
@@ -50,8 +43,8 @@ public class Bala {
 		bBody.setUserData(this); // se coloca el UserData del Sprite
 	}
 	
-	public void Draw(SpriterPlayer player, SpriterDrawer drawer){
-		player.update(bBody.getPosition().x, bBody.getPosition().y); // + 0.25f
-		drawer.draw(player);
+	public void Draw(Sprite balaSprite, SpriteBatch batch){
+		balaSprite.setPosition(bBody.getPosition().x-0.25f, bBody.getPosition().y-0.25f); // + 0.25f
+		balaSprite.draw(batch);
 	}
 }
