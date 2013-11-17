@@ -1,4 +1,4 @@
-package com.me.mygdxgame;
+package com.spinity.screens;
 
 import java.util.ArrayList;
 import java.util.Random;
@@ -63,6 +63,11 @@ import com.brashmonkey.spriter.player.SpriterPlayer;
 import com.discobeard.spriter.dom.TimeLine;
 import com.me.gdxspriter.SpriterDrawer;
 import com.me.gdxspriter.SpriterLoader;
+import com.me.mygdxgame.Bala;
+import com.me.mygdxgame.Paracaidista;
+import com.me.mygdxgame.SpriteAccessor;
+import com.spinity.utils.BitmapAccessor;
+import com.spinity.utils.BodyAccessor;
 
 
 /*
@@ -78,7 +83,12 @@ import com.me.gdxspriter.SpriterLoader;
  *    
  *  */
 
-public class MyGdxGame extends InputAdapter implements ApplicationListener, ContactListener {
+public class StartGameScreen extends AbstractScreen implements ContactListener {
+	public StartGameScreen(MainScreen game) {
+		super(game);
+		// TODO Auto-generated constructor stub
+	}
+
 	private OrthographicCamera camera; 	// variable de tipo OrthographicCamera, que es una camara con proyeccion ortografica.
 	private SpriteBatch batch;	// usado para dibujar rectangulos 2D que referencian a una Texture (region).
 	private Texture texture; // variable Texture
@@ -140,7 +150,7 @@ public class MyGdxGame extends InputAdapter implements ApplicationListener, Cont
 	BitmapFont ptos;
 	
 	@Override
-	public void create() {		
+	public void show() {		
 		w = Gdx.graphics.getWidth(); // obtenemos los valores
 		h = Gdx.graphics.getHeight();// del ancho y del alto de la ventana
 		
@@ -249,11 +259,10 @@ public class MyGdxGame extends InputAdapter implements ApplicationListener, Cont
 	}
 
 	@Override
-	public void render() {	// llamada cuando se tiene que renderizar 
+	public void render(float delta) {	// llamada cuando se tiene que renderizar 
 		Gdx.gl.glClearColor(1, 1, 1, 1); // color de fondo
 		Gdx.gl.glClear(GL10.GL_COLOR_BUFFER_BIT); // llamada para limpiar toda la pantalla
 		
-		float delta = Gdx.graphics.getDeltaTime();
 		rest += delta;
 		if(rest >= VEL_DISP){
 			shot_ready = true;
@@ -580,6 +589,12 @@ public class MyGdxGame extends InputAdapter implements ApplicationListener, Cont
 
 	@Override
 	public void postSolve(Contact contact, ContactImpulse impulse) { // llamado para actuar despues del contacto
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void hide() {
 		// TODO Auto-generated method stub
 		
 	}

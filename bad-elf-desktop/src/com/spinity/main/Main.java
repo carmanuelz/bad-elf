@@ -2,9 +2,10 @@ package com.spinity.main;
 
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
-import com.me.mygdxgame.MyGdxGame;
+import com.spinity.screens.MainScreen;
+import com.spinity.utils.NativeFunctions;
 
-public class Main {
+public class Main implements NativeFunctions{
 	public static void main(String[] args) {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.title = "juego_soldado";
@@ -12,6 +13,13 @@ public class Main {
 		cfg.width = 320;
 		cfg.height = 480;
 		
-		new LwjglApplication(new MyGdxGame(), cfg);
+		Main game = new Main();		
+		new LwjglApplication(new MainScreen(game), cfg);
+	}
+
+	@Override
+	public void cliente() {
+		// TODO Auto-generated method stub
+		
 	}
 }

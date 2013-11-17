@@ -4,9 +4,10 @@ import android.os.Bundle;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-import com.me.mygdxgame.MyGdxGame;
+import com.spinity.screens.MainScreen;
+import com.spinity.utils.NativeFunctions;
 
-public class MainActivity extends AndroidApplication {
+public class MainActivity extends AndroidApplication implements NativeFunctions{
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -14,6 +15,12 @@ public class MainActivity extends AndroidApplication {
         AndroidApplicationConfiguration cfg = new AndroidApplicationConfiguration();
         cfg.useGL20 = true;
         
-        initialize(new MyGdxGame(), cfg);
+        initialize(new MainScreen(this), cfg);
     }
+
+	@Override
+	public void cliente() {
+		// TODO Auto-generated method stub
+		
+	}
 }

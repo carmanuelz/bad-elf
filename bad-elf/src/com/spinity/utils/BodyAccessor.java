@@ -1,4 +1,4 @@
-package com.me.mygdxgame;
+package com.spinity.utils;
 
 import aurelienribon.tweenengine.TweenAccessor;
 import com.badlogic.gdx.physics.box2d.Body;
