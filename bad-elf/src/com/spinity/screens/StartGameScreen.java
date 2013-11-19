@@ -1,8 +1,6 @@
 package com.spinity.screens;
 
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Random;
 
 import aurelienribon.tweenengine.BaseTween;
 import aurelienribon.tweenengine.Timeline;
@@ -11,12 +9,12 @@ import aurelienribon.tweenengine.TweenCallback;
 import aurelienribon.tweenengine.TweenManager;
 import aurelienribon.tweenengine.equations.Linear;
 
-import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL10;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -25,9 +23,6 @@ import com.badlogic.gdx.graphics.Texture.TextureFilter;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -40,32 +35,16 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
-import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.scenes.scene2d.Actor;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
-import com.badlogic.gdx.scenes.scene2d.ui.ImageButton.ImageButtonStyle;
-import com.badlogic.gdx.scenes.scene2d.ui.Touchpad;
-import com.badlogic.gdx.scenes.scene2d.ui.Touchpad.TouchpadStyle;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
-import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener.ChangeEvent;
 import com.brashmonkey.spriter.Spriter;
-import com.brashmonkey.spriter.ik.SpriterCCDResolver;
 import com.brashmonkey.spriter.ik.SpriterIKResolver;
 import com.brashmonkey.spriter.objects.SpriterBone;
 import com.brashmonkey.spriter.objects.SpriterIKObject;
-import com.brashmonkey.spriter.objects.SpriterObject;
-import com.brashmonkey.spriter.player.SpriterAbstractPlayer;
 import com.brashmonkey.spriter.player.SpriterPlayer;
 import com.brashmonkey.spriter.xml.FileHandleSCMLReader;
-import com.discobeard.spriter.dom.TimeLine;
 import com.spinity.gdxspriter.SpriteDrawer;
 import com.spinity.gdxspriter.SpriteLoader;
-import com.spinity.gdxspriter.SpriteLoaderMultithreaded;
 import com.spinity.mygdxgame.Bala;
 import com.spinity.mygdxgame.Paracaidista;
 import com.spinity.mygdxgame.SpriteAccessor;
@@ -95,21 +74,16 @@ public class StartGameScreen extends AbstractScreen implements ContactListener {
 	private OrthographicCamera camera; 	// variable de tipo OrthographicCamera, que es una camara con proyeccion ortografica.
 	private SpriteBatch batch;	// usado para dibujar rectangulos 2D que referencian a una Texture (region).
 	private Texture texture; // variable Texture
-	private Sprite sprite;   // Mantiene la geometria, color y la info de textura para dibujar los sprites 2D usando SpriteBatch 
-	private Sprite canon;	  
-	private Sprite base;
-	private Vector2 posCanon;
-	private TextureAtlas joypadtextures; // carga un conjunto de imagenes
-	private TextureRegion contorno;		 // define un area rectangular de un Texture. origen esquina superior izquierda
-	private TextureRegion buttonTexture;
-	private Touchpad joystick2;			 // joystick sobre la pantalla. movimiento de area es circular
-	private Stage stage;				// un grafico de escena 2D. mantiene el punto de vista y distribuye los eventos de entrada
+	private Sprite base;			// un grafico de escena 2D. mantiene el punto de vista y distribuye los eventos de entrada
 	private float porcentX;				// variable de tipo float
 	private World world;				// gestiona todas las entidades, simulaciones dinamicas y consultas asincronas
 	private final TweenManager tweenManager = new TweenManager(); // actualiza las animaciones y las lineas de tiempo.
-	private Vector2 destino;			// encapsula un vector 2D
-	private Vector2 origen;
+	private Vector2 destino = new Vector2(0,1);			// encapsula un vector 2D
+	private Vector2 origen = new Vector2(0, -4.8f);
 	private Sprite BalaSprite;
+	
+	private Vector2 pointDown;
+	private float AngleDirection;
 	
 	private ArrayList<Paracaidista> paracaidistas = new ArrayList<Paracaidista>();
 	private ArrayList<Bala> balas = new ArrayList<Bala>();
@@ -121,7 +95,6 @@ public class StartGameScreen extends AbstractScreen implements ContactListener {
 	float w;
 	float h;
 	private Spriter spriter;
-	private SpriterPlayer sp;
 	SpriteLoader loader;
 	private SpriterPlayer playerSpriter;
 	SpriteDrawer drawer;
@@ -169,45 +142,17 @@ public class StartGameScreen extends AbstractScreen implements ContactListener {
 		texture.setFilter(TextureFilter.Linear, TextureFilter.Linear); // setear el filtro para las texturas, en este caso lineal
 		
 		
-		joypadtextures = new TextureAtlas(Gdx.files.internal("data/joypad.pack")); // carga el pack especificado
-
-	    contorno = joypadtextures.findRegion("contorno800"); // retorna la primera region con el nombre especificado. Este metodo
-	    buttonTexture = joypadtextures.findRegion("boton800");// usa la comparacion de nombres para encontrar la region, lo cual el resultado puede ser guardado en cache.
-	    
-	    
-	    
-	    TouchpadStyle style = new TouchpadStyle(new TextureRegionDrawable(contorno),new TextureRegionDrawable(buttonTexture)); // creas y construyes una variable touchstyle, dandole parametros de la region que has creado anteriormente
-	    joystick2 = new Touchpad(1,style ); // construyes el joystick2 dandole de parametros el style creado arriba y la distancia en pixeles desde el centro del touchpad requerido para que la perilla sea movida
-	    joystick2.setPosition(10, 10); // coloca la posicion del joystick 
-	    
-	    stage = new Stage(); // construyes el stage
-	    stage.addActor(joystick2); // agregas el actor joystick2 a la raiz del stage
-		
-	    InputMultiplexer multiplexer = new InputMultiplexer(); // usado para mantener eventos antes que el stage lo haga		
-	    multiplexer.addProcessor(stage); // Agrega un procesador de entrada, en este caso el stage
+		InputMultiplexer multiplexer = new InputMultiplexer(); // usado para mantener eventos antes que el stage lo haga	
 	    multiplexer.addProcessor(this);
+	    multiplexer.addProcessor(inputProcessor);
 	    Gdx.input.setInputProcessor(multiplexer); // coloca el inputProcessor que recibira todos los eventos ed entrada de touch y teclado
 	      
 	    Tween.registerAccessor(Body.class, new BodyAccessor()); // te permite interpolar cualquier atributo desde cualquier objeto
 	    Tween.registerAccessor(Sprite.class, new SpriteAccessor());
 	    Tween.registerAccessor(BitmapFont.class, new BitmapAccessor());
 	    
-	    TextureRegion textureBtnDown = new TextureRegion(new Texture(Gdx.files.internal("data/animaciones/button_down.png")),0,0,64,64);
-		TextureRegion textureBtnUp = new TextureRegion(new Texture(Gdx.files.internal("data/animaciones/button_up.png")),0,0,64,64);
 		BalaSprite = new Sprite(new Texture(Gdx.files.internal("data/animaciones/bala.png")));
 		BalaSprite.setSize(0.5f,0.5f);
-		ImageButtonStyle styleBtn = new ImageButtonStyle();
-		styleBtn.up = new TextureRegionDrawable(textureBtnUp);
-		styleBtn.down = new TextureRegionDrawable(textureBtnDown);
-		btn = new ImageButton(styleBtn);
-		btn.setPosition(230, 30);
-		stage.addActor(btn);
-	    
-	    AgregarListener(); // Fx agregarListener
-	    
-		TextureRegion region = new TextureRegion(texture, 0, 0, 512, 275); // construccion de region con la misma texuta como la region especificada y coloca las coordenadas relativas a la region especificada.
-		
-		posCanon = new Vector2(0,-5*h/w);
 		
 		base = new Sprite(texture); // crea un nuevo sprite con la misma textura de la region.
 		base.setSize(2.3f, 2.3f * base.getHeight() / base.getWidth()); // 0.9f, 0.9f * base.getHeight() / base.getWidth()
@@ -303,23 +248,7 @@ public class StartGameScreen extends AbstractScreen implements ContactListener {
 			explosiones.get(j).draw(batch);
 		}
 		
-		batch.end(); // se finaliza el renderizado
-		stage.act(Gdx.graphics.getDeltaTime()); // actualiza el actor sobre un determinado tiempo, que en este caso es el De
-		stage.draw(); // se dibuja el Stage
-		
-		
-		destino = new Vector2(0,1); // se construye el vector2 con los parametros x & y dados
-		destino.setAngle(playerSpriter.getAngle()+90); // se coloca el angulo del vector, dandole el angulo de rotacion del cañon + 90
-		origen = new Vector2(destino.x*1,destino.y*1 -5f);
-		destino = new Vector2(destino.x*15,destino.y*15 -5f ); // se vuelve a contruir el Vector2 con los valores de la anterior construccion (+ base.getHeight())
-		/*if(Gdx.input.isKeyPressed(Input.Keys.A)) // si se presiona la tecla A
-	    	  canon.setRotation(canon.getRotation()+1); // aumenta el angulo de rotacion del cañon
-		if(Gdx.input.isKeyPressed(Input.Keys.D)) // si se presiona la tecla D
-	    	  canon.setRotation(canon.getRotation()-1); // disminuye el angulo de rotacion del cañon
-		if((canon.getRotation() <= 90 && porcentX < 0) || (canon.getRotation() >= -90 && porcentX > 0)  ) // condicion para que el cañon se mueva solo 180°
-			canon.setRotation(canon.getRotation()-porcentX);
-		
-		debugRender.render(world, camera.combined);*/
+		batch.end();
 		
 		bitmap.begin();
 		bf.draw(bitmap, "Score: " + score, 10, 470);
@@ -347,51 +276,6 @@ public class StartGameScreen extends AbstractScreen implements ContactListener {
 
 	@Override
 	public void resume() { // llamada cuando la aplicacion es reanudada luego de una pausa
-	}
-	
-	private void AgregarListener()
-	{
-		// Metodo que agrega la funcionalidad del touchpad
-		joystick2.addListener(new ChangeListener()
-		{ // Agrega un listener para recibir eventos que han golpeado al actor.
-	         @Override
-	         public void changed (ChangeEvent event, Actor actor) { // Cambia el actor por el evento que se esta agregando, en este caso el touchpad
-	            Touchpad touchpad = (Touchpad) actor;
-	            porcentX = (touchpad.getKnobPercentX()*3);
-	            if(porcentX > 0){
-					maniSpriter.setFrameSpeed(10);
-				}else{
-					maniSpriter.setFrameSpeed(-10);
-				}
-	            }
-		});
-		joystick2.addListener(new InputListener()
-		{
-			public boolean touchDown(InputEvent event, float x,float y, int pointer, int button)
-			{
-				return true;
-			}
-			
-			public void touchUp(InputEvent event, float x, float y, int pointer, int button)
-			{
-				maniSpriter.setFrameSpeed(0);
-			}
-		});
-		btn.addListener(new InputListener()
-		{
-			public boolean touchDown(InputEvent event, float x,float y, int pointer, int button)
-			{
-				if(shot_ready){
-					crearBala(destino);
-					shot_ready = false;
-					rest = 0;
-					fire.play();
-					playerSpriter.setFrame(0);
-					playerSpriter.setFrameSpeed(20);
-				}
-				return true;
-			}
-		});
 	}
 	
 	private void restart() { 
@@ -563,6 +447,30 @@ public class StartGameScreen extends AbstractScreen implements ContactListener {
 					break;
 			}
 		}
+	};
+	
+	private final InputProcessor inputProcessor = new InputAdapter() {
+        @Override
+        public boolean touchDown(int x, int y, int pointer, int button) {
+        	pointDown = new Vector2(x,y);
+        	return true;
+        }
+        
+        
+        public boolean touchDragged(int x, int y, int pointer){
+        	Vector2 direction = new Vector2(x - pointDown.x, y - pointDown.y);
+        	AngleDirection = direction.angle()*-1;
+        	AngleDirection +=90;
+    		playerSpriter.setAngle(AngleDirection);
+        	return true;
+        }
+        public boolean touchUp(int x, int y, int pointer, int button) {
+        	destino = new Vector2(0,1);
+        	destino.setAngle(AngleDirection+90);
+        	destino = new Vector2(destino.x*15,destino.y*15 -5f ); 
+        	crearBala(destino);
+        	return true;
+        }
 	};
 	
 
