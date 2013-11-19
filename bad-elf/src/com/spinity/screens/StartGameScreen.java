@@ -224,8 +224,6 @@ public class StartGameScreen extends AbstractScreen implements ContactListener {
 	    bg = new Sprite(bgTexture);
 	    bg.setSize(10, 10*h/w);
 	    bg.setPosition(-5, -5*h/w);
-	    this.loader = new SpriteLoader(2048, 2048);
-        this.drawer = new SpriteDrawer(this.loader, this.batch);
 	    loader = new SpriteLoader(2048, 2048);
 	    drawer = new SpriteDrawer(this.loader, this.batch);
 	    spriter =   FileHandleSCMLReader.getSpriter(Gdx.files.internal("data/animaciones/anim_000.scml"), loader);

@@ -21,6 +21,6 @@ public class MainScreen extends Game {
 
     @Override
     public void create() {
-        setScreen(new StartGameScreen(this));
+        setScreen(new SignInScreen(this));
     }
 }

@@ -20,7 +20,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 public class SignInScreen extends AbstractScreen {
 	
 	Stage stage;
-	TextButton btnSignIn;
+	TextButton btnStart;
 	String resp, name, pass;
 	
 	public SignInScreen(MainScreen game) {
@@ -50,30 +50,9 @@ public class SignInScreen extends AbstractScreen {
 		stage = new Stage();
 		Gdx.input.setInputProcessor(stage);
 		Skin skin = new Skin(Gdx.files.internal("data/uiskin.json"));
-		
-		Label nameLabel = new Label("Username:", skin);
-		TextField nameText = new TextField("",skin);
-		Label passLabel = new Label("Password:", skin);
-		TextField passText = new TextField("",skin);
-		passText.setPasswordCharacter('*');
-		passText.setPasswordMode(true);
-		btnSignIn = new TextButton("Sign In", skin, "toggle");
-
-		Table table = new Table();
-		table.setPosition(200, 200);
-		table.setSize(300, 200);
-		table.add(nameLabel);
-		table.add(nameText).width(100);
-		table.row();
-		table.add(passLabel);
-		table.add(passText).width(100);
-		table.row();
-		table.add(btnSignIn).colspan(2);
-		stage.addActor(table);
-		table.debug();
-		
-		name = nameText.getText();
-		pass = passText.getText();
+		btnStart = new TextButton("Start Game", skin);
+		btnStart.setSize(100,50);
+		stage.addActor(btnStart);
 		
 		AgregarListener();
 	}
@@ -88,41 +67,11 @@ public class SignInScreen extends AbstractScreen {
 		return true;
 	}
 	
-	public String getId() {
-	      String input = "";
-
-	      try {
-	         URL url = new URL(
-	               "http://localhost/androidGame/entrar.php?usuario=" + name + "&contrasena=" + pass);
-	         URLConnection connection = url.openConnection();
-	         connection.setConnectTimeout(3000);
-	         connection.connect();
-	         BufferedReader br = new BufferedReader(new InputStreamReader(
-	               connection.getInputStream()));
-	         String line;
-	         while ((line = br.readLine()) != null) {
-	            input += line;
-	         }
-	         br.close();
-	      } catch (IOException e) {
-	         e.printStackTrace();
-	         input = "";
-	      } 
-	      return input;
-	}
 	
 	private void AgregarListener(){
-		btnSignIn.addListener(new InputListener(){
+		btnStart.addListener(new InputListener(){
 			public boolean touchDown (InputEvent event, float x, float y, int pointer, int button) {
-	    		resp = getId();
-	    		System.out.println(resp);
-	    		if(Integer.parseInt(resp) == 1){
-	    			System.out.println("wawawawawawaaaaaaaaaaa");
-	    			game.setScreen(new RoomScreen(game));
-	    			//System.out.println("wawawawawawaaaaaaaaaaa");
-	    		}
-	    		else
-	    			game.setScreen(new SignInScreen(game));
+				game.setScreen(new StartGameScreen(game));
 	            return true;
 	    	}
 		});
