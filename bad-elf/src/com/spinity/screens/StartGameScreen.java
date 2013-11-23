@@ -82,7 +82,7 @@ public class StartGameScreen extends AbstractScreen implements ContactListener {
 	private Vector2 origen = new Vector2(0, -4.8f);
 	private Sprite BalaSprite;
 	
-	private Vector2 pointDown;
+	private Vector2 pointDown = new Vector2(0,0);
 	private float AngleDirection;
 	
 	private ArrayList<Paracaidista> paracaidistas = new ArrayList<Paracaidista>();
@@ -459,16 +459,22 @@ public class StartGameScreen extends AbstractScreen implements ContactListener {
         
         public boolean touchDragged(int x, int y, int pointer){
         	Vector2 direction = new Vector2(x - pointDown.x, y - pointDown.y);
-        	AngleDirection = direction.angle()*-1;
-        	AngleDirection +=90;
-    		playerSpriter.setAngle(AngleDirection);
+        	float resultandte  = (float) Math.sqrt(Math.pow(pointDown.y-y,2)+Math.sqrt(Math.pow(pointDown.x-x,2)));
+        	if(pointDown.y < y && resultandte>50){
+	        	AngleDirection = direction.angle()*-1;
+	        	AngleDirection +=90;
+	    		playerSpriter.setAngle(AngleDirection);
+        	}
         	return true;
         }
         public boolean touchUp(int x, int y, int pointer, int button) {
-        	destino = new Vector2(0,1);
-        	destino.setAngle(AngleDirection+90);
-        	destino = new Vector2(destino.x*15,destino.y*15 -5f ); 
-        	crearBala(destino);
+        	float resultandte  = (float) Math.sqrt(Math.pow(pointDown.y-y,2)+Math.sqrt(Math.pow(pointDown.x-x,2)));
+        	if(pointDown.y < y && resultandte>50){
+	        	destino = new Vector2(0,1);
+	        	destino.setAngle(AngleDirection+90);
+	        	destino = new Vector2(destino.x*15,destino.y*15 -5f ); 
+	        	crearBala(destino);
+        	}
         	return true;
         }
 	};
